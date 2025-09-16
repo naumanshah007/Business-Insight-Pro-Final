@@ -164,43 +164,6 @@ def fuzzy_column_match(field, user_columns):
     return None
 def get_mandatory_fields_for_domain(domain):
     """
-    Returns a list of mandatory fields for a given domain.
-    These are the minimal columns needed to run basic insights.
-    """
-    if domain == "retail":
-        return ["Date", "Product", "Amount"]
-    elif domain == "real_estate":
-        return ["SaleDate", "Suburb", "SalePrice"]
-    else:
-        return []
-def get_required_fields_for_domain(domain):
-    """
-    Returns a tiered list of fields based on analysis capabilities.
-    Tier 1: Essential fields (minimum viable analysis)
-    Tier 2: Enhanced fields (better insights)
-    Tier 3: Advanced fields (comprehensive analysis)
-    """
-    if domain == "retail":
-        return {
-            "tier1_essential": ["Date", "Product", "Amount"],  # Minimum for basic analysis
-            "tier2_enhanced": ["CustomerID", "Location", "Channel"],  # Better insights
-            "tier3_advanced": ["OrderID", "StoreID", "Gender", "Age", "Cost", "Inventory", "IsReturned", "Feedback"]  # Full analysis
-        }
-    elif domain == "real_estate":
-        return {
-            "tier1_essential": ["SaleDate", "Suburb", "SalePrice"],  # Minimum for basic analysis
-            "tier2_enhanced": ["Agent", "PropertyType"],  # Better insights
-            "tier3_advanced": ["Bedrooms", "Bathrooms", "LandSize", "YearBuilt", "BuyerID"]  # Full analysis
-        }
-    else:
-        return {
-            "tier1_essential": [],
-            "tier2_enhanced": [],
-            "tier3_advanced": []
-        }
-
-def get_mandatory_fields_for_domain(domain):
-    """
     Returns only the absolutely essential fields needed for basic analysis.
     This allows businesses with minimal data to still get insights.
     """

@@ -1,8 +1,8 @@
 import streamlit as st
 import pandas as pd
-from ui_tabs import render_tabs
-from utils import load_config
+from streamlined_ui import render_streamlined_interface
 from datagenie_interface import render_datagenie_sidebar
+from config import get_config
 
 # --- Function to remove duplicate column names ---
 def deduplicate_columns(df):
@@ -38,7 +38,7 @@ with st.sidebar:
 
 # --- Load Configurations ---
 try:
-    config = load_config()
+    config = get_config()
 except Exception as e:
     st.error(f"Failed to load configuration: {e}")
     st.stop()
@@ -52,13 +52,8 @@ st.session_state.setdefault("mapping", {})
 if st.session_state["df_uploaded"] is not None:
     st.session_state["df_uploaded"] = deduplicate_columns(st.session_state["df_uploaded"])
 
-# --- Main Title & Instructions ---
-st.header("📈 Business Insights Pro")
-st.write("Upload your business data to discover trends, key drivers, and AI-powered answers — no technical skills required.")
-st.warning("Please do not upload personal or sensitive information.")
-
-# --- Render All Tabs ---
-render_tabs(config=config)
+# --- Render Streamlined Interface ---
+render_streamlined_interface()
 
 # --- Footer ---
 st.markdown("---")
