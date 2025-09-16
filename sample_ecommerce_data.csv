@@ -1,0 +1,52 @@
+Date,Customer_ID,Product,Category,Amount,Quantity,Location,Channel,Rating,Feedback
+2024-01-15,CUST_001,Laptop,Electronics,1299.99,1,New York,Online,5,Excellent product, fast delivery
+2024-01-15,CUST_002,Smartphone,Electronics,899.99,1,California,Online,4,Good phone, battery could be better
+2024-01-16,CUST_003,Headphones,Electronics,199.99,2,Texas,Store,5,Amazing sound quality
+2024-01-16,CUST_001,Tablet,Electronics,599.99,1,New York,Online,4,Great for reading
+2024-01-17,CUST_004,Desk Chair,Furniture,299.99,1,Florida,Online,3,Comfortable but expensive
+2024-01-17,CUST_005,Monitor,Electronics,399.99,1,Washington,Store,5,Perfect for work
+2024-01-18,CUST_006,Keyboard,Electronics,89.99,1,Oregon,Online,4,Good typing experience
+2024-01-18,CUST_007,Office Desk,Furniture,499.99,1,California,Store,4,Solid construction
+2024-01-19,CUST_008,Mouse,Electronics,49.99,2,Nevada,Online,5,Very responsive
+2024-01-19,CUST_009,Webcam,Electronics,129.99,1,Utah,Online,3,Average quality
+2024-01-20,CUST_010,Printer,Electronics,199.99,1,Colorado,Store,4,Good print quality
+2024-01-20,CUST_011,Bookshelf,Furniture,149.99,1,Arizona,Online,5,Easy to assemble
+2024-01-21,CUST_012,Smart Watch,Electronics,299.99,1,New Mexico,Online,4,Good fitness tracking
+2024-01-21,CUST_013,Bluetooth Speaker,Electronics,79.99,1,Idaho,Store,5,Great sound
+2024-01-22,CUST_014,Gaming Chair,Furniture,399.99,1,Montana,Online,4,Comfortable for long sessions
+2024-01-22,CUST_015,External Hard Drive,Electronics,129.99,1,Wyoming,Online,5,Fast and reliable
+2024-01-23,CUST_016,Standing Desk,Furniture,599.99,1,North Dakota,Store,5,Life changing
+2024-01-23,CUST_017,USB Cable,Electronics,19.99,3,South Dakota,Online,3,Works but cheap quality
+2024-01-24,CUST_018,Monitor Stand,Furniture,89.99,1,Nebraska,Online,4,Good height adjustment
+2024-01-24,CUST_019,Wireless Charger,Electronics,39.99,2,Kansas,Store,4,Convenient charging
+2024-01-25,CUST_020,Desk Lamp,Furniture,59.99,1,Oklahoma,Online,5,Perfect lighting
+2024-01-25,CUST_021,Power Bank,Electronics,49.99,1,Arkansas,Online,4,Good battery life
+2024-01-26,CUST_022,File Cabinet,Furniture,199.99,1,Louisiana,Store,4,Spacious storage
+2024-01-26,CUST_023,Screen Protector,Electronics,14.99,2,Mississippi,Online,3,Average protection
+2024-01-27,CUST_024,Ergonomic Mouse Pad,Furniture,29.99,1,Alabama,Online,5,Very comfortable
+2024-01-27,CUST_025,Phone Case,Electronics,24.99,1,Georgia,Store,4,Good protection
+2024-01-28,CUST_026,Desk Organizer,Furniture,39.99,1,South Carolina,Online,4,Keeps desk tidy
+2024-01-28,CUST_027,Cable Management,Electronics,19.99,1,North Carolina,Online,3,Basic solution
+2024-01-29,CUST_028,Monitor Arm,Furniture,149.99,1,Virginia,Store,5,Great flexibility
+2024-01-29,CUST_029,Webcam Cover,Electronics,9.99,1,West Virginia,Online,4,Simple privacy
+2024-01-30,CUST_030,Desk Mat,Furniture,34.99,1,Kentucky,Online,5,Perfect size
+2024-01-30,CUST_031,Bluetooth Adapter,Electronics,29.99,1,Tennessee,Store,4,Works well
+2024-02-01,CUST_032,Office Plant,Furniture,24.99,1,Indiana,Online,5,Adds life to office
+2024-02-01,CUST_033,Memory Card,Electronics,34.99,1,Ohio,Online,4,Fast transfer speeds
+2024-02-02,CUST_034,Desk Clock,Furniture,19.99,1,Michigan,Store,3,Basic functionality
+2024-02-02,CUST_035,USB Hub,Electronics,39.99,1,Wisconsin,Online,4,Good port expansion
+2024-02-03,CUST_036,Pen Holder,Furniture,12.99,1,Minnesota,Online,5,Simple and effective
+2024-02-03,CUST_037,Wireless Mouse,Electronics,59.99,1,Iowa,Store,4,Smooth operation
+2024-02-04,CUST_038,Desk Drawer,Furniture,79.99,1,Missouri,Online,4,Good storage space
+2024-02-04,CUST_039,HDMI Cable,Electronics,24.99,1,Illinois,Online,3,Works but short
+2024-02-05,CUST_040,Monitor Cleaner,Electronics,14.99,1,Indiana,Store,4,Good cleaning kit
+2024-02-05,CUST_041,Desk Fan,Furniture,49.99,1,Ohio,Online,5,Quiet and effective
+2024-02-06,CUST_042,Keyboard Wrist Rest,Furniture,19.99,1,Michigan,Online,4,Comfortable support
+2024-02-06,CUST_043,Portable Speaker,Electronics,89.99,1,Wisconsin,Store,5,Great portable sound
+2024-02-07,CUST_044,Desk Calendar,Furniture,15.99,1,Minnesota,Online,3,Basic calendar
+2024-02-07,CUST_045,Wireless Headphones,Electronics,159.99,1,Iowa,Online,4,Good noise cancellation
+2024-02-08,CUST_046,Monitor Mount,Furniture,199.99,1,Missouri,Store,5,Excellent stability
+2024-02-08,CUST_047,Phone Stand,Electronics,24.99,1,Illinois,Online,4,Good viewing angle
+2024-02-09,CUST_048,Desk Light,Furniture,69.99,1,Indiana,Online,5,Perfect brightness
+2024-02-09,CUST_049,Bluetooth Earbuds,Electronics,99.99,1,Ohio,Store,4,Good sound quality
+2024-02-10,CUST_050,Desk Tray,Furniture,29.99,1,Michigan,Online,4,Good organization

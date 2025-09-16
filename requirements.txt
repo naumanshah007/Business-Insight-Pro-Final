@@ -1,0 +1,14 @@
+streamlit
+pandas
+numpy
+scikit-learn
+plotly
+pycaret
+duckdb
+openpyxl
+nltk
+spacy
+transformers
+keybert
+pdfkit
+textblob

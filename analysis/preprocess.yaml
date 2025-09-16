@@ -1,0 +1,13 @@
+default:
+  numeric:
+    cap_iqr: 1.5
+    strategy: median
+  categorical:
+    strategy: mode
+
+retail:
+  numeric:
+    cap_iqr: 1.5
+    strategy: median
+  categorical:
+    strategy: mode

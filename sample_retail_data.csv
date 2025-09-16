@@ -1,0 +1,51 @@
+Date,Product,Amount,CustomerID,OrderID,Location,Channel,Gender,Age,Cost,Inventory,IsReturned,Feedback
+2024-01-15,Coffee,25.50,CUST_001,ORD_0001,Store A,In-Store,Male,34,12.75,50,False,Great product!
+2024-01-16,Tea,15.75,CUST_002,ORD_0002,Store B,In-Store,Female,28,7.88,30,False,Not bad
+2024-01-17,Coffee,30.00,CUST_003,ORD_0003,Online,Online,Male,45,15.00,25,False,Excellent quality
+2024-01-18,Energy Drink,45.00,CUST_004,ORD_0004,Store A,In-Store,Female,22,22.50,15,False,Could be better
+2024-01-19,Tea,18.25,CUST_005,ORD_0005,Online,Online,Male,38,9.13,20,True,Love it!
+2024-01-20,Coffee,25.50,CUST_001,ORD_0006,Store A,In-Store,Male,34,12.75,45,False,Great product!
+2024-01-21,Tea,15.75,CUST_006,ORD_0007,Store B,In-Store,Female,31,7.88,28,False,Poor service
+2024-01-22,Coffee,30.00,CUST_007,ORD_0008,Online,Online,Female,29,15.00,22,False,Amazing!
+2024-01-23,Energy Drink,45.00,CUST_008,ORD_0009,Store A,In-Store,Male,41,22.50,12,False,Average
+2024-01-24,Tea,18.25,CUST_009,ORD_0010,Online,Online,Female,26,9.13,18,False,Outstanding
+2024-01-25,Coffee,25.50,CUST_010,ORD_0011,Store B,In-Store,Male,33,12.75,40,False,Disappointed
+2024-01-26,Tea,15.75,CUST_011,ORD_0012,Store A,In-Store,Female,35,7.88,25,False,Great product!
+2024-01-27,Coffee,30.00,CUST_012,ORD_0013,Online,Online,Male,42,15.00,20,False,Excellent quality
+2024-01-28,Energy Drink,45.00,CUST_013,ORD_0014,Store B,In-Store,Female,24,22.50,10,False,Could be better
+2024-01-29,Tea,18.25,CUST_014,ORD_0015,Online,Online,Male,37,9.13,15,True,Love it!
+2024-01-30,Coffee,25.50,CUST_015,ORD_0016,Store A,In-Store,Female,30,12.75,35,False,Great product!
+2024-02-01,Tea,15.75,CUST_016,ORD_0017,Store B,In-Store,Male,39,7.88,22,False,Not bad
+2024-02-02,Coffee,30.00,CUST_017,ORD_0018,Online,Online,Female,27,15.00,18,False,Excellent quality
+2024-02-03,Energy Drink,45.00,CUST_018,ORD_0019,Store A,In-Store,Male,44,22.50,8,False,Amazing!
+2024-02-04,Tea,18.25,CUST_019,ORD_0020,Online,Online,Female,32,9.13,12,False,Outstanding
+2024-02-05,Coffee,25.50,CUST_020,ORD_0021,Store B,In-Store,Male,36,12.75,30,False,Great product!
+2024-02-06,Tea,15.75,CUST_021,ORD_0022,Store A,In-Store,Female,29,7.88,20,False,Poor service
+2024-02-07,Coffee,30.00,CUST_022,ORD_0023,Online,Online,Male,43,15.00,15,False,Excellent quality
+2024-02-08,Energy Drink,45.00,CUST_023,ORD_0024,Store B,In-Store,Female,25,22.50,6,False,Could be better
+2024-02-09,Tea,18.25,CUST_024,ORD_0025,Online,Online,Male,40,9.13,10,True,Love it!
+2024-02-10,Coffee,25.50,CUST_025,ORD_0026,Store A,In-Store,Female,31,12.75,25,False,Great product!
+2024-02-11,Tea,15.75,CUST_026,ORD_0027,Store B,In-Store,Male,38,7.88,18,False,Not bad
+2024-02-12,Coffee,30.00,CUST_027,ORD_0028,Online,Online,Female,28,15.00,12,False,Amazing!
+2024-02-13,Energy Drink,45.00,CUST_028,ORD_0029,Store A,In-Store,Male,46,22.50,4,False,Average
+2024-02-14,Tea,18.25,CUST_029,ORD_0030,Online,Online,Female,33,9.13,8,False,Outstanding
+2024-02-15,Coffee,25.50,CUST_030,ORD_0031,Store B,In-Store,Male,35,12.75,20,False,Great product!
+2024-02-16,Tea,15.75,CUST_031,ORD_0032,Store A,In-Store,Female,27,7.88,15,False,Excellent quality
+2024-02-17,Coffee,30.00,CUST_032,ORD_0033,Online,Online,Male,41,15.00,10,False,Could be better
+2024-02-18,Energy Drink,45.00,CUST_033,ORD_0034,Store B,In-Store,Female,23,22.50,2,False,Love it!
+2024-02-19,Tea,18.25,CUST_034,ORD_0035,Online,Online,Male,39,9.13,6,True,Great product!
+2024-02-20,Coffee,25.50,CUST_035,ORD_0036,Store A,In-Store,Female,30,12.75,15,False,Not bad
+2024-02-21,Tea,15.75,CUST_036,ORD_0037,Store B,In-Store,Male,37,7.88,12,False,Poor service
+2024-02-22,Coffee,30.00,CUST_037,ORD_0038,Online,Online,Female,26,15.00,8,False,Amazing!
+2024-02-23,Energy Drink,45.00,CUST_038,ORD_0039,Store A,In-Store,Male,42,22.50,1,False,Excellent quality
+2024-02-24,Tea,18.25,CUST_039,ORD_0040,Online,Online,Female,34,9.13,4,False,Outstanding
+2024-02-25,Coffee,25.50,CUST_040,ORD_0041,Store B,In-Store,Male,32,12.75,10,False,Great product!
+2024-02-26,Tea,15.75,CUST_041,ORD_0042,Store A,In-Store,Female,28,7.88,8,False,Could be better
+2024-02-27,Coffee,30.00,CUST_042,ORD_0043,Online,Online,Male,40,15.00,5,False,Love it!
+2024-02-28,Energy Drink,45.00,CUST_043,ORD_0044,Store B,In-Store,Female,24,22.50,0,False,Average
+2024-02-29,Tea,18.25,CUST_044,ORD_0045,Online,Online,Male,36,9.13,2,True,Great product!
+2024-03-01,Coffee,25.50,CUST_045,ORD_0046,Store A,In-Store,Female,29,12.75,8,False,Not bad
+2024-03-02,Tea,15.75,CUST_046,ORD_0047,Store B,In-Store,Male,38,7.88,6,False,Excellent quality
+2024-03-03,Coffee,30.00,CUST_047,ORD_0048,Online,Online,Female,31,15.00,3,False,Amazing!
+2024-03-04,Energy Drink,45.00,CUST_048,ORD_0049,Store A,In-Store,Male,44,22.50,0,False,Outstanding
+2024-03-05,Tea,18.25,CUST_049,ORD_0050,Online,Online,Female,27,9.13,1,False,Great product!
