@@ -15,18 +15,35 @@ import os
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from datagenie_chatbot import DataGenieChatbot
 
-def render_answer_box(title: str, answer_markdown: str, icon: str = "🧞‍♂️", preview_lines: int = 8) -> None:
-    """Render a compact answer with a clear heading and optional expandable details."""
+def render_answer_box(title: str, answer_markdown: str, icon: str = "🧞‍♂️", data_used: dict = None) -> None:
+    """Render a structured answer with tabs for Summary/Details/Data used."""
     st.markdown(f"#### {icon} {title}")
+    
+    # Split answer into summary and details
     lines = answer_markdown.splitlines()
-    if len(lines) > preview_lines:
-        preview = "\n".join(lines[:preview_lines])
-        remainder = "\n".join(lines[preview_lines:])
-        st.markdown(preview)
-        with st.expander("Show full answer"):
-            st.markdown(remainder)
-    else:
-        st.markdown(answer_markdown)
+    summary_lines = min(6, len(lines))
+    summary = "\n".join(lines[:summary_lines])
+    details = "\n".join(lines[summary_lines:]) if len(lines) > summary_lines else ""
+    
+    # Create tabs for different views
+    tab_names = ["📋 Summary"]
+    if details:
+        tab_names.append("📄 Details")
+    if data_used:
+        tab_names.append("🔍 Data Used")
+    
+    tabs = st.tabs(tab_names)
+    
+    with tabs[0]:  # Summary tab
+        st.markdown(summary)
+    
+    if details and len(tabs) > 1:
+        with tabs[1]:  # Details tab
+            st.markdown(details)
+    
+    if data_used and len(tabs) > 2:
+        with tabs[2]:  # Data Used tab
+            st.json(data_used)
 
 def render_datagenie_interface():
     """Render the DataGenie chatbot interface"""
@@ -51,8 +68,12 @@ def render_datagenie_interface():
         
         return
     
-    # Compact guidance
-    st.caption("Tip: Review the 📊 Smart Dashboard first, then ask follow-up questions here.")
+    # Compact guidance and Focus mode toggle
+    col1, col2 = st.columns([3, 1])
+    with col1:
+        st.caption("Tip: Review the 📊 Smart Dashboard first, then ask follow-up questions here.")
+    with col2:
+        focus_mode = st.checkbox("🎯 Focus Mode", help="Hide history and quick questions for cleaner interface")
     
     # Initialize DataGenie
     if 'datagenie' not in st.session_state:
@@ -84,8 +105,8 @@ def render_datagenie_interface():
     # Chat interface
     st.markdown("### 💬 Chat with DataGenie")
     
-    # Display conversation history (last 5, full expandable)
-    if 'datagenie_history' in st.session_state and st.session_state.datagenie_history:
+    # Display conversation history (hidden in focus mode)
+    if not focus_mode and 'datagenie_history' in st.session_state and st.session_state.datagenie_history:
         st.markdown("#### 📜 Recent Conversation")
         history = st.session_state.datagenie_history
         recent = history[-5:]
@@ -97,7 +118,7 @@ def render_datagenie_interface():
                 </div>
                 """, unsafe_allow_html=True)
             else:
-                render_answer_box("DataGenie Answer", message['content'], icon="🧞‍♂️")
+                render_answer_box("DataGenie Answer", message['content'], icon="🧞‍♂️", data_used=message.get('data_used'))
                 if 'confidence' in message:
                     confidence_color = "green" if message['confidence'] > 0.8 else "orange" if message['confidence'] > 0.6 else "red"
                     st.markdown(f"""
@@ -116,28 +137,29 @@ def render_datagenie_interface():
                         </div>
                         """, unsafe_allow_html=True)
                     else:
-                        render_answer_box("DataGenie Answer", message['content'], icon="🧞‍♂️")
+                        render_answer_box("DataGenie Answer", message['content'], icon="🧞‍♂️", data_used=message.get('data_used'))
     
-    # Quick question buttons
-    st.markdown("#### ⚡ Quick Questions")
-    
-    col1, col2, col3, col4 = st.columns(4)
-    
-    with col1:
-        if st.button("📊 Data Overview", key="quick_overview_datagenie"):
-            process_question("Tell me about my data", datagenie, df)
-    
-    with col2:
-        if st.button("📈 Top Items", key="quick_top_datagenie"):
-            process_question("What are my top products or items?", datagenie, df)
-    
-    with col3:
-        if st.button("📅 Trends", key="quick_trends_datagenie"):
-            process_question("Show me trends over time", datagenie, df)
-    
-    with col4:
-        if st.button("🔍 Quality", key="quick_quality_datagenie"):
-            process_question("How is my data quality?", datagenie, df)
+    # Quick question buttons (hidden in focus mode)
+    if not focus_mode:
+        st.markdown("#### ⚡ Quick Questions")
+        
+        col1, col2, col3, col4 = st.columns(4)
+        
+        with col1:
+            if st.button("📊 Data Overview", key="quick_overview_datagenie"):
+                process_question("Tell me about my data", datagenie, df)
+        
+        with col2:
+            if st.button("📈 Top Items", key="quick_top_datagenie"):
+                process_question("What are my top products or items?", datagenie, df)
+        
+        with col3:
+            if st.button("📅 Trends", key="quick_trends_datagenie"):
+                process_question("Show me trends over time", datagenie, df)
+        
+        with col4:
+            if st.button("🔍 Quality", key="quick_quality_datagenie"):
+                process_question("How is my data quality?", datagenie, df)
     
     # Chat input
     st.markdown("#### 💭 Ask DataGenie Anything")
@@ -164,9 +186,7 @@ def render_datagenie_interface():
             datagenie.clear_conversation()
             st.rerun()
     
-    # Sample questions
-    st.markdown("#### 💡 Sample Questions")
-    
+    # Sample questions dropdown
     sample_questions = [
         "What's the total revenue in my data?",
         "Which customers have the highest spending?",
@@ -178,9 +198,12 @@ def render_datagenie_interface():
         "Compare different categories in my data"
     ]
     
-    for i, question in enumerate(sample_questions):
-        if st.button(f"💬 {question}", key=f"sample_datagenie_{i}"):
-            process_question(question, datagenie, df)
+    col1, col2 = st.columns([2, 1])
+    with col1:
+        selected_question = st.selectbox("💡 Sample Questions", ["Select a question..."] + sample_questions, key="sample_question_select")
+    with col2:
+        if st.button("🚀 Ask Selected", key="ask_selected_question") and selected_question != "Select a question...":
+            process_question(selected_question, datagenie, df)
             st.rerun()
     
     # Data insights panel
@@ -212,8 +235,8 @@ def process_question(question: str, datagenie: DataGenieChatbot, df: pd.DataFram
         try:
             response = datagenie.process_question(question, df)
             
-            # Display the response in a styled box
-            render_answer_box("DataGenie Answer", response["answer"], icon="🧞‍♂️")
+            # Display the response in a styled box with data used
+            render_answer_box("DataGenie Answer", response["answer"], icon="🧞‍♂️", data_used=response.get("data_used"))
             
             # Show confidence
             confidence_color = "green" if response["confidence"] > 0.8 else "orange" if response["confidence"] > 0.6 else "red"
