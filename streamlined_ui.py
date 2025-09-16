@@ -126,13 +126,13 @@ class StreamlinedUI:
         for i in range(0, len(features), 2):
             col1, col2 = st.columns(2)
             with col1:
-                icon, title, desc = features[i]
-                st.markdown(f"**{icon} {title}**")
+                title, desc = features[i]
+                st.markdown(f"**{title}**")
                 st.markdown(f"*{desc}*")
             if i + 1 < len(features):
                 with col2:
-                    icon, title, desc = features[i + 1]
-                    st.markdown(f"**{icon} {title}**")
+                    title, desc = features[i + 1]
+                    st.markdown(f"**{title}**")
                     st.markdown(f"*{desc}*")
     
     def _load_sample_data(self, domain: str):
