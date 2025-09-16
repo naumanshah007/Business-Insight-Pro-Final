@@ -15,6 +15,19 @@ import os
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from datagenie_chatbot import DataGenieChatbot
 
+def render_answer_box(title: str, answer_markdown: str, icon: str = "🧞‍♂️", preview_lines: int = 8) -> None:
+    """Render a compact answer with a clear heading and optional expandable details."""
+    st.markdown(f"#### {icon} {title}")
+    lines = answer_markdown.splitlines()
+    if len(lines) > preview_lines:
+        preview = "\n".join(lines[:preview_lines])
+        remainder = "\n".join(lines[preview_lines:])
+        st.markdown(preview)
+        with st.expander("Show full answer"):
+            st.markdown(remainder)
+    else:
+        st.markdown(answer_markdown)
+
 def render_datagenie_interface():
     """Render the DataGenie chatbot interface"""
     
@@ -38,8 +51,8 @@ def render_datagenie_interface():
         
         return
     
-    # Guide message
-    st.info("💡 **Already seen the key insights?** Check the **📊 Smart Dashboard** tab first for the most important questions and answers. Then come back here to ask any additional questions!")
+    # Compact guidance
+    st.caption("Tip: Review the 📊 Smart Dashboard first, then ask follow-up questions here.")
     
     # Initialize DataGenie
     if 'datagenie' not in st.session_state:
@@ -71,32 +84,39 @@ def render_datagenie_interface():
     # Chat interface
     st.markdown("### 💬 Chat with DataGenie")
     
-    # Display conversation history
+    # Display conversation history (last 5, full expandable)
     if 'datagenie_history' in st.session_state and st.session_state.datagenie_history:
-        st.markdown("#### 📜 Conversation History")
-        
-        for i, message in enumerate(st.session_state.datagenie_history):
+        st.markdown("#### 📜 Recent Conversation")
+        history = st.session_state.datagenie_history
+        recent = history[-5:]
+        for i, message in enumerate(recent):
             if message['type'] == 'user':
                 st.markdown(f"""
-                <div style="background-color: #e3f2fd; padding: 1rem; border-radius: 10px; margin: 0.5rem 0; border-left: 4px solid #2196f3;">
+                <div style=\"background-color: #e3f2fd; padding: 1rem; border-radius: 10px; margin: 0.5rem 0; border-left: 4px solid #2196f3;\">
                     <strong>👤 You:</strong> {message['content']}
                 </div>
                 """, unsafe_allow_html=True)
             else:
-                st.markdown(f"""
-                <div style="background-color: #f3e5f5; padding: 1rem; border-radius: 10px; margin: 0.5rem 0; border-left: 4px solid #9c27b0;">
-                    <strong>🧞‍♂️ DataGenie:</strong> {message['content']}
-                </div>
-                """, unsafe_allow_html=True)
-                
-                # Show confidence if available
+                render_answer_box("DataGenie Answer", message['content'], icon="🧞‍♂️")
                 if 'confidence' in message:
                     confidence_color = "green" if message['confidence'] > 0.8 else "orange" if message['confidence'] > 0.6 else "red"
                     st.markdown(f"""
-                    <div style="text-align: right; font-size: 0.8rem; color: {confidence_color};">
+                    <div style=\"text-align: right; font-size: 0.8rem; color: {confidence_color};\">
                         Confidence: {message['confidence']:.1%}
                     </div>
                     """, unsafe_allow_html=True)
+
+        if len(history) > len(recent):
+            with st.expander("Show full history"):
+                for i, message in enumerate(history[:-5]):
+                    if message['type'] == 'user':
+                        st.markdown(f"""
+                        <div style=\"background-color: #e3f2fd; padding: 1rem; border-radius: 10px; margin: 0.5rem 0; border-left: 4px solid #2196f3;\">
+                            <strong>👤 You:</strong> {message['content']}
+                        </div>
+                        """, unsafe_allow_html=True)
+                    else:
+                        render_answer_box("DataGenie Answer", message['content'], icon="🧞‍♂️")
     
     # Quick question buttons
     st.markdown("#### ⚡ Quick Questions")
@@ -145,7 +165,7 @@ def render_datagenie_interface():
             st.rerun()
     
     # Sample questions
-    st.markdown("#### 💡 Sample Questions to Try:")
+    st.markdown("#### 💡 Sample Questions")
     
     sample_questions = [
         "What's the total revenue in my data?",
@@ -192,8 +212,8 @@ def process_question(question: str, datagenie: DataGenieChatbot, df: pd.DataFram
         try:
             response = datagenie.process_question(question, df)
             
-            # Display the response
-            st.markdown(response["answer"])
+            # Display the response in a styled box
+            render_answer_box("DataGenie Answer", response["answer"], icon="🧞‍♂️")
             
             # Show confidence
             confidence_color = "green" if response["confidence"] > 0.8 else "orange" if response["confidence"] > 0.6 else "red"
@@ -210,7 +230,7 @@ def process_question(question: str, datagenie: DataGenieChatbot, df: pd.DataFram
 def render_datagenie_sidebar():
     """Render DataGenie sidebar with additional features"""
     
-    st.sidebar.markdown("### 🧞‍♂️ DataGenie Features")
+    st.sidebar.markdown("### 🧞‍♂️ DataGenie")
     
     # Data upload reminder
     if 'uploaded_data' not in st.session_state or st.session_state.uploaded_data is None:
@@ -219,9 +239,12 @@ def render_datagenie_sidebar():
     
     # Quick stats
     df = st.session_state.uploaded_data
-    st.sidebar.markdown("**📊 Your Data:**")
-    st.sidebar.metric("Records", f"{len(df):,}")
-    st.sidebar.metric("Columns", len(df.columns))
+    st.sidebar.markdown("**📊 Your Data**")
+    col_a, col_b = st.sidebar.columns(2)
+    with col_a:
+        st.metric("Records", f"{len(df):,}")
+    with col_b:
+        st.metric("Columns", len(df.columns))
     
     # DataGenie status
     if 'datagenie_initialized' in st.session_state:
@@ -235,14 +258,13 @@ def render_datagenie_sidebar():
         user_messages = len([m for m in history if m['type'] == 'user'])
         st.sidebar.metric("Questions Asked", user_messages)
     
-    # Tips
-    st.sidebar.markdown("### 💡 Tips")
-    st.sidebar.markdown("""
-    • Be specific in your questions
-    • Ask about trends, comparisons, or patterns
-    • DataGenie learns from your data structure
-    • Try the quick question buttons first
-    """)
+    # Tips (collapsed)
+    with st.sidebar.expander("💡 Tips"):
+        st.markdown("""
+        • Be specific in your questions
+        • Ask about trends, comparisons, or patterns
+        • Try the quick question buttons first
+        """)
     
     # Export conversation
     if 'datagenie_history' in st.session_state and st.session_state.datagenie_history:
