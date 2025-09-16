@@ -46,3 +46,6 @@ ENV/
 .env
 .env.*
 
+# Streamlit secrets (do not commit)
+.streamlit/
+
