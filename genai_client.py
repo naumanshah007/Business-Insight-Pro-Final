@@ -13,16 +13,29 @@ import json
 import time
 import hashlib
 from typing import Dict, List, Optional, Any
+import os
 from openai import OpenAI
 import streamlit as st
 
 class GenAIClient:
     """Production-ready GenAI client with consistency controls"""
     
-    def __init__(self, api_key: str = "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"):
+    def __init__(self, api_key: Optional[str] = None):
+        # Resolve API key from explicit arg, Streamlit secrets, or environment
+        resolved_api_key = (
+            api_key
+            or (st.secrets.get("OPENROUTER_API_KEY") if hasattr(st, "secrets") else None)
+            or os.getenv("OPENROUTER_API_KEY")
+        )
+
+        if not resolved_api_key:
+            raise RuntimeError(
+                "Missing OpenRouter API key. Set OPENROUTER_API_KEY in environment or Streamlit secrets."
+            )
+
         self.client = OpenAI(
             base_url="https://openrouter.ai/api/v1",
-            api_key=api_key,
+            api_key=resolved_api_key,
         )
         
         # Model configuration with consistency settings
